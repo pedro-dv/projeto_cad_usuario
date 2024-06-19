@@ -1,0 +1,37 @@
+
+{% extends 'usuarios/base.html' %}
+{% block conteudo %}
+<div class="container">
+    <h1>Usuários Cadastrados:</h1>
+
+    <!-- Exibir mensagens caso usuario ja exista-->
+    {% if messages %}
+        <div class="alert alert-info">
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <table class="table table-bordered table-striped">
+        <tr>
+            <th>id</th>
+            <th>nome</th>
+            <th>idade</th>
+            <th>Ações</th>
+        </tr>
+        {% for usuario in usuarios %}
+        <tr>
+            <td>{{ usuario.id_usuario }}</td>
+            <td>{{ usuario.nome }}</td>
+            <td>{{ usuario.idade }}</td>
+            <td>
+                <a href="{% url 'delete_usuario' usuario.id_usuario %}" class="btn btn-danger">Excluir</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    
+</div>
+{% endblock %}
